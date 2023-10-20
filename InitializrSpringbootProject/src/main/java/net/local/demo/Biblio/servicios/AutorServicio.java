@@ -26,40 +26,28 @@ public class AutorServicio {
 
     @Transactional
     public void crearAutor(String nombre) throws MiExcepcion {
-
         validar(nombre);
-
         Autor autor = new Autor();
-
         autor.setNombre(nombre);
-
+        autor.setAlta(Boolean.TRUE);
         autorRepositorio.save(autor);
 
     }
 
     public List<Autor> listarAutores() {
-
         List<Autor> autores = new ArrayList();
-
         autores = autorRepositorio.findAll();
-
         return autores;
     }
 
     @Transactional
     public void modificarAutor(String nombre, Long id) throws MiExcepcion {
-
         validar(nombre);
-
         Optional<Autor> respuesta = autorRepositorio.findById(id);
-
-        if (respuesta.isPresent()) {
+       if (respuesta.isPresent()) {
             Autor autor = respuesta.get();
-
             autor.setNombre(nombre);
-
             autorRepositorio.save(autor);
-
         }
     }
 

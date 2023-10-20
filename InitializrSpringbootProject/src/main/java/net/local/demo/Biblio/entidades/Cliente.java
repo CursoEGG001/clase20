@@ -10,7 +10,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.NamedQueries;
 import jakarta.persistence.NamedQuery;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import java.io.Serializable;
 import java.math.BigInteger;
@@ -43,8 +42,7 @@ public class Cliente implements Serializable {
     private String nombre;
     @Column(name = "TELEFONO")
     private String telefono;
-    @OneToOne(mappedBy = "clienteId")
-    private Prestamo prestamo;
+
 
     public Cliente() {
     }
@@ -93,13 +91,6 @@ public class Cliente implements Serializable {
         this.telefono = telefono;
     }
 
-    public Prestamo getPrestamo() {
-        return prestamo;
-    }
-
-    public void setPrestamo(Prestamo prestamo) {
-        this.prestamo = prestamo;
-    }
 
     @Override
     public int hashCode() {

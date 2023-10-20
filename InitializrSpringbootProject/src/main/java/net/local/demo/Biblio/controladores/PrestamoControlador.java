@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class PrestamoControlador {
     
-    @RequestMapping("/url")
+    @RequestMapping("/view/Prestamo")
     public String page(Model model) {
         model.addAttribute("attribute", "value");
         return "view.name";

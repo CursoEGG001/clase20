@@ -9,8 +9,6 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.NamedQueries;
-import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
@@ -24,11 +22,6 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "prestamo")
-@NamedQueries({
-    @NamedQuery(name = "Prestamo.findAll", query = "SELECT p FROM Prestamo p"),
-    @NamedQuery(name = "Prestamo.findById", query = "SELECT p FROM Prestamo p WHERE p.id = :id"),
-    @NamedQuery(name = "Prestamo.findByFechadevolucion", query = "SELECT p FROM Prestamo p WHERE p.fechadevolucion = :fechadevolucion"),
-    @NamedQuery(name = "Prestamo.findByFechaprestamo", query = "SELECT p FROM Prestamo p WHERE p.fechaprestamo = :fechaprestamo")})
 public class Prestamo implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -43,7 +36,6 @@ public class Prestamo implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaprestamo;
     @JoinColumn(name = "CLIENTE_ID", referencedColumnName = "ID")
-    @OneToOne
     private Cliente clienteId;
     @JoinColumn(name = "LIBRO_ISBN", referencedColumnName = "ISBN")
     @OneToOne

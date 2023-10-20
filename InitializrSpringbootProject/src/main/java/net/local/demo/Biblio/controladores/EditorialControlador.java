@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class EditorialControlador {
     
-    @RequestMapping("/url")
+    @RequestMapping("/view/editorial")
     public String page(Model model) {
         model.addAttribute("attribute", "value");
         return "view.name";
