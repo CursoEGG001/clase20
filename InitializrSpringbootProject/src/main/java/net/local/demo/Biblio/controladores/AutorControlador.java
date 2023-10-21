@@ -4,27 +4,40 @@
  */
 package net.local.demo.Biblio.controladores;
 
+import java.util.List;
+import net.local.demo.Biblio.entidades.Autor;
+import net.local.demo.Biblio.servicios.AutorServicio;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  *
  * @author pc
  */
 @Controller
+@RequestMapping("/view/autor")
 public class AutorControlador {
 
-    @RequestMapping("/view/autor")
+    @Autowired
+    AutorServicio autorServicio;
+    
     public String page(Model model) {
         model.addAttribute("attribute", "value");
         return "view.name";
     }
 
-    @GetMapping("/carga")
-    public String mostrarAutor(@RequestParam("ID") Long ID) {
-        return ("Autor : " + ID);
+    
+        @GetMapping("/lista")
+    public String listar(ModelMap modelo){
+        
+        List<Autor> autores = autorServicio.listarAutores();
+        
+        modelo.addAttribute("autores", autores);
+        
+        return "autor_list.html";
     }
 }
