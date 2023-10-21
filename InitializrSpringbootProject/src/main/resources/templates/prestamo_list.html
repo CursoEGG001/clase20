@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this template
+-->
+<html lang="ES-ar" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Vista Editoriales</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div>
+            <table>
+                <thead>
+                    <tr>
+                        <th scope="col">Id del Prestamo</th>
+                        <th scope="col">Fecha en que se prestó</th>
+                        <th scope="col">Fecha en que se devuelve</th>
+                        <th scope="col">Cliente</th>
+                        <th scope="col">Libro</th>
+                    </tr>
+                </thead>
+                <tbody th:each="prestamo : ${prestamos}"> 
+                    <tr>
+                        <th scope="row" th:text="${libro.isbn}"></th>
+                        <td th:text="${prestamo.fechaprestamo}"></td>
+                        <td th:text="${prestamo.fechadevolucion}"></td>
+                        <td th:text="${prestamo.clienteId.nombre}"></td>
+                        <td th:text="${prestamo.libroIsbn.titulo}"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </body>
+</html>
+

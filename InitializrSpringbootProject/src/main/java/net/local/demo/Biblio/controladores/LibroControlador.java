@@ -4,8 +4,14 @@
  */
 package net.local.demo.Biblio.controladores;
 
+import java.util.List;
+import net.local.demo.Biblio.entidades.Libro;
+import net.local.demo.Biblio.servicios.LibroServicio;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -16,10 +22,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @RequestMapping("/view/libro")
 public class LibroControlador {
+    
+    @Autowired
+    LibroServicio libroServicio;
 
     public String page(Model model) {
-        model.addAttribute("attribute", "value");
+        model.addAttribute("libro", libroServicio.getOne(0L));
         return "view.name";
     }
 
+    @GetMapping("/lista")
+    public String listar(ModelMap modelo){
+        
+        List<Libro> libros = libroServicio.listarLibros();
+        
+        modelo.addAttribute("libros", libros);
+        
+        return "libro_list.html";
+    }
 }
+

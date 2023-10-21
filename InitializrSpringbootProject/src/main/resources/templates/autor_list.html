@@ -16,16 +16,13 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this
                     <tr>
                         <th scope="col">Id del Autor</th>
                         <th scope="col">Nombre del Autor</th>
-
                     </tr>
                 </thead>
                 <tbody th:each="autor : ${autores}"> 
                     <tr>
                         <th scope="row" th:text="${autor.id}"></th>
                         <td th:text="${autor.nombre}"></td>
-
                     </tr>
-
                 </tbody>
             </table>
         </div>

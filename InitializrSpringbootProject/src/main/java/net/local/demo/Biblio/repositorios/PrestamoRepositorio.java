@@ -17,9 +17,10 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface PrestamoRepositorio extends JpaRepository<Prestamo, Long> {
-    
+
     @Query("SELECT p FROM Prestamo p WHERE p.fechadevolucion = :fechadevolucion")
-            public List<Prestamo> findByFechadevolucion(Date fechadevolucion);
+    public List<Prestamo> findByFechadevolucion(Date fechadevolucion);
+
     @Query("SELECT p FROM Prestamo p WHERE p.fechaprestamo = :fechaprestamo")
-            public List<Prestamo> findByFechaprestamo(Date fechaprestamo);
+    public List<Prestamo> findByFechaprestamo(Date fechaprestamo);
 }

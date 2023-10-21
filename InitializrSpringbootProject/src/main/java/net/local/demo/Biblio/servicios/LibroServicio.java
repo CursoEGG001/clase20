@@ -37,7 +37,6 @@ public class LibroServicio {
 
         validar(isbn, titulo, ejemplares, idAutor, idEditorial);
 
-        Optional<Libro> respuesta = libroRepositorio.findById(isbn);
         Optional<Autor> respuestaAutor = autorRepositorio.findById(idAutor);
         Optional<Editorial> respuestaEditorial = editorialRepositorio.findById(idEditorial);
 
