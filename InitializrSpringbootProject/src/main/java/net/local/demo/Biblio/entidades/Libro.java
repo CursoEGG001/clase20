@@ -9,7 +9,6 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.NamedQueries;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToOne;
@@ -51,13 +50,12 @@ public class Libro implements Serializable {
     @Column(name = "TITULO")
     private String titulo;
     @JoinColumn(name = "AUTOR_ID", referencedColumnName = "ID")
-    @ManyToOne
+    @OneToOne
     private Autor autorId;
     @JoinColumn(name = "EDITORIAL_ID", referencedColumnName = "ID")
-    @ManyToOne
+    @OneToOne
     private Editorial editorialId;
-    @OneToOne(mappedBy = "libroIsbn")
-    private Prestamo prestamo;
+
 
     public Libro() {
     }
@@ -138,13 +136,6 @@ public class Libro implements Serializable {
         this.editorialId = editorialId;
     }
 
-    public Prestamo getPrestamo() {
-        return prestamo;
-    }
-
-    public void setPrestamo(Prestamo prestamo) {
-        this.prestamo = prestamo;
-    }
 
     @Override
     public int hashCode() {

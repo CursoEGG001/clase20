@@ -7,9 +7,9 @@ package net.local.demo.Biblio.entidades;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
@@ -27,7 +27,7 @@ public class Prestamo implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @Column(name = "ID")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @Column(name = "FECHADEVOLUCION")
     @Temporal(TemporalType.TIMESTAMP)
@@ -35,10 +35,7 @@ public class Prestamo implements Serializable {
     @Column(name = "FECHAPRESTAMO")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaprestamo;
-    @JoinColumn(name = "CLIENTE_ID", referencedColumnName = "ID")
     private Cliente clienteId;
-    @JoinColumn(name = "LIBRO_ISBN", referencedColumnName = "ISBN")
-    @OneToOne
     private Libro libroIsbn;
 
     public Prestamo() {
@@ -112,5 +109,5 @@ public class Prestamo implements Serializable {
     public String toString() {
         return "net.local.demo.Biblio.entidades.Prestamo[ id=" + id + " ]";
     }
-    
+
 }
