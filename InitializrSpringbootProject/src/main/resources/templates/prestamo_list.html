@@ -23,7 +23,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this
                 </thead>
                 <tbody th:each="prestamo : ${prestamos}"> 
                     <tr>
-                        <th scope="row" th:text="${libro.isbn}"></th>
+                        <th scope="row" th:text="${prestamo.id}"></th>
                         <td th:text="${prestamo.fechaprestamo}"></td>
                         <td th:text="${prestamo.fechadevolucion}"></td>
                         <td th:text="${prestamo.clienteId.nombre}"></td>

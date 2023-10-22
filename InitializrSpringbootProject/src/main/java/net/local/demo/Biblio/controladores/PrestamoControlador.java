@@ -34,9 +34,10 @@ public class PrestamoControlador {
     @GetMapping("/lista")
     public String listar(ModelMap modelo) {
 
-        List<Prestamo> prestamos = prestamoRepositorio.findAll();
+            List<Prestamo> prestamos = prestamoRepositorio.findAll();
+            
+            modelo.addAttribute("prestamos", prestamos);
 
-        modelo.addAttribute("prestamos", prestamos);
 
         return "prestamo_list.html";
     }

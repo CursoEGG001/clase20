@@ -10,6 +10,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.NamedQueries;
+import jakarta.persistence.NamedQuery;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
@@ -22,6 +24,13 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "prestamo")
+@NamedQueries({
+    @NamedQuery(name = "Prestamo.findAll", query = "SELECT p FROM Prestamo p"),
+    @NamedQuery(name = "Prestamo.findById", query = "SELECT p FROM Prestamo p WHERE p.id = :id"),
+    @NamedQuery(name = "Prestamo.findByCliente", query = "SELECT p FROM Prestamo p WHERE p.clienteId = :clienteId"),
+    @NamedQuery(name = "Prestamo.findByFechadevolucion", query = "SELECT p FROM Prestamo p WHERE p.fechadevolucion = :fechadevolucion"),
+    @NamedQuery(name = "Prestamo.findByFechaprestamo", query = "SELECT p FROM Prestamo p WHERE p.fechaprestamo = :fechaprestamo"),
+    @NamedQuery(name = "Prestamo.findByLibroIsbn", query = "SELECT p FROM Prestamo p WHERE p.libroIsbn = :libroIsbn")})
 public class Prestamo implements Serializable {
 
     private static final long serialVersionUID = 1L;
