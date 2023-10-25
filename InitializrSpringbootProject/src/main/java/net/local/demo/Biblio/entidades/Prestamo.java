@@ -44,7 +44,9 @@ public class Prestamo implements Serializable {
     @Column(name = "FECHAPRESTAMO")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaprestamo;
+    @Column(name = "CLIENTE_ID")
     private Cliente clienteId;
+    @Column(name = "LIBRO_ISBN")
     private Libro libroIsbn;
 
     public Prestamo() {
