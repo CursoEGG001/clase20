@@ -41,6 +41,7 @@ public class NoticiasControlador {
         List<Noticias> noticias = noticiasServicio.listarNoticias();
         modelo.addAttribute("noticias", noticias);
 
+
         return "noticias_inicio";
     }
 
@@ -49,11 +50,15 @@ public class NoticiasControlador {
 
         modelo.put("noticia", noticiasServicio.getOne(id));
 
+
         return "noticia.html";
     }
 
     @GetMapping("/panelAdmin")
     public String panelAdmin(ModelMap modelo) {
+        
+
+        
         return ("/panelAdmin.html");
     }
 

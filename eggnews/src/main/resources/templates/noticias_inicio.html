@@ -11,11 +11,32 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     </head>
     <body>
-        <div class='container bg-secondary bg-gradient text-white'>
+
+        <header class="container bg-gradient bg-black bg-opacity-50 rounded-2">
+            <div class="row">
+                <h3 class="opacity-75 text-success-emphasis text-center">EGG News</h3><h5 class="opacity-50 text-end">Todo lo que no estamos viendo...por usar un IDE</h5>
+            </div>
+        </header>
+
+        <div class='container rounded-4 bg-secondary bg-gradient text-white'>
             <ul class='list-group list-group-flush'>
                 <li class="list-group-item bg-black bg-gradient text-primary" th:each="noticia: ${noticias}"><a th:text="${noticia.titulo}" th:href= "@{/noticia/__${noticia.id}__}"></a></li>
             </ul>
         </div>
+
+        <div th:if="${error != null}" class="card text-white bg-danger mb-3 mensajeError" >
+            <div class="card-body p-4">
+                <h5 class="card-title">Error 👎</h5>
+                <p class="card-text" th:text="${error}"></p>
+            </div>
+        </div>
+        <div th:if="${exito != null}" class="card text-white bg-success mb-3 mt-3 mensajeExito" >
+            <div class="card-body p-4">
+                <h5 class="card-title"> 👍 ¡Exito!</h5>
+                <p class="card-text" th:text="${exito}"></p>
+            </div>
+        </div>
+
         <footer>
             <div class="container bg-dark bg-gradient text-secondary">
                 Contenido de Egg News

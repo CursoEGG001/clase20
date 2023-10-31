@@ -14,6 +14,20 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this
         <div class='container display-1'>
             <div class="text-center bg-secondary bg-gradient">EGG News</div><br />
             <div class="container">
+
+                <div th:if="${error != null}" class="card text-white bg-danger mb-3 mensajeError" >
+                    <div class="card-body p-4">
+                        <h5 class="card-title">Error 👎</h5>
+                        <p class="card-text" th:text="${error}"></p>
+                    </div>
+                </div>
+                <div th:if="${exito != null}" class="card text-white bg-success mb-3 mt-3 mensajeExito" >
+                    <div class="card-body p-4">
+                        <h5 class="card-title"> 👍 ¡Exito!</h5>
+                        <p class="card-text" th:text="${exito}"></p>
+                    </div>
+                </div>
+
                 <a class="col-5 p-3 fs-4 bg-info-subtle text-info-subtle fst-italic text-sm-end" th:href="@{/inicio}">Inicio</a>
             </div>
         </div>
