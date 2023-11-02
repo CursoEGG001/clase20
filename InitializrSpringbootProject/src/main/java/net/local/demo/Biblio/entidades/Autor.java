@@ -4,41 +4,34 @@
  */
 package net.local.demo.Biblio.entidades;
 
-import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.NamedQueries;
-import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
 import java.io.Serializable;
 import java.util.Collection;
+
 
 /**
  *
  * @author pc
  */
 @Entity
-@Table(name = "autor")
-@NamedQueries({
-    @NamedQuery(name = "Autor.findAll", query = "SELECT a FROM Autor a"),
-    @NamedQuery(name = "Autor.findById", query = "SELECT a FROM Autor a WHERE a.id = :id"),
-    @NamedQuery(name = "Autor.findByNombre", query = "SELECT a FROM Autor a WHERE a.nombre = :nombre"),
-    @NamedQuery(name = "Autor.findByAlta", query = "SELECT a FROM Autor a WHERE a.alta = :alta")})
+
 public class Autor implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @Basic(optional = false)
-    @Column(name = "ID")
-    private Long id;
-    @Column(name = "NOMBRE")
-    private String nombre;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    protected Long id;
+    @Column(name = "NOMBRE",unique = true)
+    protected String nombre;
     @Column(name = "ALTA")
-    private Boolean alta;
+    protected Boolean alta;
     @OneToMany(mappedBy = "autorId")
-    private Collection<Libro> libroCollection;
+    protected Collection<Libro> libroCollection;
 
     public Autor() {
     }

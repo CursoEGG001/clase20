@@ -3,11 +3,11 @@
 Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
 Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this template
 -->
-<html lang="ES-ar" xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
     <head>
         <title>Vista Editoriales</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="UTF-8"></meta>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
     </head>
     <body>
         <div >   
@@ -26,7 +26,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this
                 </thead>
                 <tbody th:each="libro : ${libros}"> 
                     <tr>
-                        <th scope="row" th:text="${libro.isbn}"></th>
+                        <td scope="row" th:text="${libro.isbn}"></td>
                         <td th:text="${libro.titulo}"></td>
                         <td th:text="${libro.anio}"></td>
                         <td th:text="${libro.ejemplares}"></td>

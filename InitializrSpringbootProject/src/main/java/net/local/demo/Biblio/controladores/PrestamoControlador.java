@@ -6,7 +6,8 @@ package net.local.demo.Biblio.controladores;
 
 import java.util.List;
 import net.local.demo.Biblio.entidades.Prestamo;
-import net.local.demo.Biblio.repositorios.PrestamoRepositorio;
+import net.local.demo.Biblio.excepciones.MiExcepcion;
+import net.local.demo.Biblio.servicios.PrestamoServicio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,7 +25,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class PrestamoControlador {
 
     @Autowired
-    PrestamoRepositorio prestamoRepositorio;
+    PrestamoServicio prestamoServicio;
 
     public String page(Model model) {
         model.addAttribute("attribute", "value");
@@ -32,13 +33,11 @@ public class PrestamoControlador {
     }
 
     @GetMapping("/lista")
-    public String listar(ModelMap modelo) {
+    public String listar(ModelMap modelo) throws MiExcepcion {
 
-            List<Prestamo> prestamos = prestamoRepositorio.findAll();
-            
-            modelo.addAttribute("prestamos", prestamos);
+        List<Prestamo> prestamos = prestamoServicio.listarPrestamos();
+        modelo.addAttribute("prestamos", prestamos);
 
-
-        return "prestamo_list.html";
+        return "prestamo_list";
     }
 }

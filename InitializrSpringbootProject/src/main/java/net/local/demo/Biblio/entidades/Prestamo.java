@@ -4,14 +4,13 @@
  */
 package net.local.demo.Biblio.entidades;
 
-import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.NamedQueries;
-import jakarta.persistence.NamedQuery;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
@@ -24,30 +23,25 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "prestamo")
-@NamedQueries({
-    @NamedQuery(name = "Prestamo.findAll", query = "SELECT p FROM Prestamo p"),
-    @NamedQuery(name = "Prestamo.findById", query = "SELECT p FROM Prestamo p WHERE p.id = :id"),
-    @NamedQuery(name = "Prestamo.findByCliente", query = "SELECT p FROM Prestamo p WHERE p.clienteId = :clienteId"),
-    @NamedQuery(name = "Prestamo.findByFechadevolucion", query = "SELECT p FROM Prestamo p WHERE p.fechadevolucion = :fechadevolucion"),
-    @NamedQuery(name = "Prestamo.findByFechaprestamo", query = "SELECT p FROM Prestamo p WHERE p.fechaprestamo = :fechaprestamo"),
-    @NamedQuery(name = "Prestamo.findByLibroIsbn", query = "SELECT p FROM Prestamo p WHERE p.libroIsbn = :libroIsbn")})
 public class Prestamo implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @Basic(optional = false)
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+    protected Long id;
     @Column(name = "FECHADEVOLUCION")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date fechadevolucion;
+    protected Date fechadevolucion;
     @Column(name = "FECHAPRESTAMO")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date fechaprestamo;
-    @Column(name = "CLIENTE_ID")
-    private Cliente clienteId;
-    @Column(name = "LIBRO_ISBN")
-    private Libro libroIsbn;
+    protected Date fechaprestamo;
+    @ManyToOne
+    @JoinColumn(name = "CLIENTE_ID", referencedColumnName = "ID")
+    protected Cliente clienteId;
+    @ManyToOne
+    @JoinColumn(name = "LIBRO_ISBN", referencedColumnName = "ISBN")
+    protected Libro libroIsbn;
 
     public Prestamo() {
     }
@@ -94,26 +88,6 @@ public class Prestamo implements Serializable {
 
     public void setLibroIsbn(Libro libroIsbn) {
         this.libroIsbn = libroIsbn;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Prestamo)) {
-            return false;
-        }
-        Prestamo other = (Prestamo) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-            return false;
-        }
-        return true;
     }
 
     @Override

@@ -4,12 +4,11 @@
  */
 package net.local.demo.Biblio.entidades;
 
-import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.NamedQueries;
-import jakarta.persistence.NamedQuery;
 import jakarta.persistence.Table;
 import java.io.Serializable;
 import java.math.BigInteger;
@@ -20,29 +19,22 @@ import java.math.BigInteger;
  */
 @Entity
 @Table(name = "cliente")
-@NamedQueries({
-    @NamedQuery(name = "Cliente.findAll", query = "SELECT c FROM Cliente c"),
-    @NamedQuery(name = "Cliente.findById", query = "SELECT c FROM Cliente c WHERE c.id = :id"),
-    @NamedQuery(name = "Cliente.findByApellido", query = "SELECT c FROM Cliente c WHERE c.apellido = :apellido"),
-    @NamedQuery(name = "Cliente.findByDocumento", query = "SELECT c FROM Cliente c WHERE c.documento = :documento"),
-    @NamedQuery(name = "Cliente.findByNombre", query = "SELECT c FROM Cliente c WHERE c.nombre = :nombre"),
-    @NamedQuery(name = "Cliente.findByTelefono", query = "SELECT c FROM Cliente c WHERE c.telefono = :telefono")})
+
 public class Cliente implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @Basic(optional = false)
     @Column(name = "ID")
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    protected Long id;
     @Column(name = "APELLIDO")
-    private String apellido;
-    @Column(name = "DOCUMENTO")
-    private BigInteger documento;
+    protected String apellido;
+    @Column(name = "DOCUMENTO", unique = true)
+    protected BigInteger documento;
     @Column(name = "NOMBRE")
-    private String nombre;
+    protected String nombre;
     @Column(name = "TELEFONO")
-    private String telefono;
-
+    protected String telefono;
 
     public Cliente() {
     }
@@ -91,7 +83,6 @@ public class Cliente implements Serializable {
         this.telefono = telefono;
     }
 
-
     @Override
     public int hashCode() {
         int hash = 0;
@@ -116,5 +107,5 @@ public class Cliente implements Serializable {
     public String toString() {
         return "net.local.demo.Biblio.entidades.Cliente[ id=" + id + " ]";
     }
-    
+
 }

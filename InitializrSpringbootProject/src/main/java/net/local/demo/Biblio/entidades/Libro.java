@@ -4,13 +4,10 @@
  */
 package net.local.demo.Biblio.entidades;
 
-import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.NamedQueries;
-import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import java.io.Serializable;
@@ -21,21 +18,11 @@ import java.io.Serializable;
  */
 @Entity
 @Table(name = "libro")
-@NamedQueries({
-    @NamedQuery(name = "Libro.findAll", query = "SELECT l FROM Libro l"),
-    @NamedQuery(name = "Libro.findByIsbn", query = "SELECT l FROM Libro l WHERE l.isbn = :isbn"),
-    @NamedQuery(name = "Libro.findByAlta", query = "SELECT l FROM Libro l WHERE l.alta = :alta"),
-    @NamedQuery(name = "Libro.findByAnio", query = "SELECT l FROM Libro l WHERE l.anio = :anio"),
-    @NamedQuery(name = "Libro.findByEjemplares", query = "SELECT l FROM Libro l WHERE l.ejemplares = :ejemplares"),
-    @NamedQuery(name = "Libro.findByEjemplaresprestados", query = "SELECT l FROM Libro l WHERE l.ejemplaresprestados = :ejemplaresprestados"),
-    @NamedQuery(name = "Libro.findByEjemplaresrestantes", query = "SELECT l FROM Libro l WHERE l.ejemplaresrestantes = :ejemplaresrestantes"),
-    @NamedQuery(name = "Libro.findByTitulo", query = "SELECT l FROM Libro l WHERE l.titulo = :titulo")})
 public class Libro implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @Basic(optional = false)
-    @Column(name = "ISBN")
+    @Column(name = "ISBN", unique = true)
     private Long isbn;
     @Column(name = "ALTA")
     private Boolean alta;
@@ -47,7 +34,7 @@ public class Libro implements Serializable {
     private Integer ejemplaresprestados;
     @Column(name = "EJEMPLARESRESTANTES")
     private Integer ejemplaresrestantes;
-    @Column(name = "TITULO")
+    @Column(name = "TITULO", unique = true)
     private String titulo;
     @JoinColumn(name = "AUTOR_ID", referencedColumnName = "ID")
     @OneToOne
@@ -55,7 +42,6 @@ public class Libro implements Serializable {
     @JoinColumn(name = "EDITORIAL_ID", referencedColumnName = "ID")
     @OneToOne
     private Editorial editorialId;
-
 
     public Libro() {
     }
@@ -136,7 +122,6 @@ public class Libro implements Serializable {
         this.editorialId = editorialId;
     }
 
-
     @Override
     public int hashCode() {
         int hash = 0;
@@ -161,5 +146,5 @@ public class Libro implements Serializable {
     public String toString() {
         return "net.local.demo.Biblio.entidades.Libro[ isbn=" + isbn + " ]";
     }
-    
+
 }

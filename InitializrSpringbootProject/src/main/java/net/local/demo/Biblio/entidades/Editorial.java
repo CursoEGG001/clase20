@@ -4,12 +4,11 @@
  */
 package net.local.demo.Biblio.entidades;
 
-import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.NamedQueries;
-import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import java.io.Serializable;
@@ -21,24 +20,20 @@ import java.util.Collection;
  */
 @Entity
 @Table(name = "editorial")
-@NamedQueries({
-    @NamedQuery(name = "Editorial.findAll", query = "SELECT e FROM Editorial e"),
-    @NamedQuery(name = "Editorial.findById", query = "SELECT e FROM Editorial e WHERE e.id = :id"),
-    @NamedQuery(name = "Editorial.findByNombre", query = "SELECT e FROM Editorial e WHERE e.nombre = :nombre"),
-    @NamedQuery(name = "Editorial.findByAlta", query = "SELECT e FROM Editorial e WHERE e.alta = :alta")})
+
 public class Editorial implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @Basic(optional = false)
     @Column(name = "ID")
-    private Long id;
-    @Column(name = "NOMBRE")
-    private String nombre;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    protected Long id;
+    @Column(name = "NOMBRE", unique = true)
+    protected String nombre;
     @Column(name = "ALTA")
-    private Boolean alta;
+    protected Boolean alta;
     @OneToMany(mappedBy = "editorialId")
-    private Collection<Libro> libroCollection;
+    protected Collection<Libro> libroCollection;
 
     public Editorial() {
     }
@@ -103,5 +98,5 @@ public class Editorial implements Serializable {
     public String toString() {
         return "net.local.demo.Biblio.entidades.Editorial[ id=" + id + " ]";
     }
-    
+
 }
