@@ -22,7 +22,12 @@ public class ErrorControlador implements ErrorController {
     public String handleError(HttpServletRequest request) {
         Integer statusCode = (Integer) request.getAttribute("jakarta.servlet.error.status_code");
         Exception exception = (Exception) request.getAttribute("jakarta.servlet.error.exception");
-        return String.format("<html><body><h2>Página de error</h2><div>Status code: <b>%s</b></div>"
+        return String.format("<!DOCTYPE html><html><head>\n"
+                + "<title>Control de Errores</title>\n"
+                + "<meta charset=\"UTF-8\" />\n"
+                + "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n"
+                + "<link rel=\"stylesheet\" href=\"/css/default.css\" />\n"
+                + "</head><body><h2>Página de error</h2><div>Status code: <b>%s</b></div>"
                 + "<div>Mensaje de Excepción: <b>%s</b></div><body></html>",
                 statusCode, exception == null ? "N/A" : exception.getMessage());
     }

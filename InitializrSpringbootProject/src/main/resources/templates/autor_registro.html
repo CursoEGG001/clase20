@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this template
+-->
+<html lang="ES-ar" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+    <head>
+        <title>Registro de Autores</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" th:href="@{/css/default.css}" />
+    </head>
+    <body>
+        <div >
+            <form class="formulario" th:action="@{/view/autor/registro}" method="POST">
+                <input th:if="${id != null}" type="hidden" th:value="${id}"/>
+                <div>
+                    <h2 class="card-title" th:text="${id != null ? 'Modifica el Autor' : 'Registra el Autor'}">Registra el Autor</h2>
+                </div>
+                <div >
+                    <label for="campoNombre">Ingrese un Autor</label>
+                    <input type="text" id="campoNombre" name="nombre" placeholder="NOMBRE" th:value="${nombre}" />
+                </div>
+                <button type="submit">Registrar</button>
+            </form>
+        </div>
+    </body>
+</html>

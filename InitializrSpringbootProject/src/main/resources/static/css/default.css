@@ -10,12 +10,9 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
 html,
 body {
     height: 100%;
-}
-
-body {
     margin: 0;
     background: linear-gradient(
-        135deg,
+        349deg,
         #49a09dfd,
         #25b7b7cd,
         #318481ab,
@@ -24,7 +21,7 @@ body {
         #3c0d7377,
         #5f2c82fd),
         linear-gradient(
-        45deg,
+        2deg,
         #e89292,
         #e39c62,
         #edde8a,
@@ -39,6 +36,41 @@ body {
         ;
     font-family: sans-serif;
     font-weight: 100;
+}
+
+h2 {
+    text-shadow:
+        1px 1px 2px white,
+        0 0 1em lightblue,
+        0 0 0.2em cyan;
+}
+
+div {
+    margin: 1em;
+    align-content: stretch;
+    align-items: start;
+}
+
+label{
+    align-self: start;
+    color: #2f2332;
+    box-shadow: 1px 2px .3em #25141d23;
+    border-radius: .23em;
+
+}
+
+input{
+    border-style: groove ;
+    align-self: start;
+    color: #2f23326f;
+    box-shadow: .2em .3em .7em #d34d2f43;
+    background:
+        radial-gradient(
+        circle at 7%,
+        rgba(18, 4, 11, 0.45) 5%,
+        rgba(23, 18, 43, 0.21) 8%,
+        rgba(20, 16, 16, 0.12) 73%,
+        rgba(11, 5, 11, 0.07) 82%);
 }
 
 .container {
