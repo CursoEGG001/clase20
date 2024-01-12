@@ -10,9 +10,9 @@ import net.local.demo.Biblio.excepciones.MiExcepcion;
 import net.local.demo.Biblio.servicios.AutorServicio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -28,11 +28,6 @@ public class AutorControlador {
     @Autowired
     AutorServicio autorServicio;
 
-    public String page(Model model) {
-        model.addAttribute("attribute", "value");
-        return "view.name";
-    }
-
     @GetMapping("/lista")
     public String listar(ModelMap modelo) {
 
@@ -45,6 +40,14 @@ public class AutorControlador {
 
     @GetMapping("/registra-autor")
     public String iniciaRegistro(ModelMap modelo) {
+        return "autor_registro.html";
+    }
+
+    @GetMapping("/registra-autor/{id}")
+    public String cambiaRegistro(@PathVariable Long id, ModelMap modelo) {
+
+        modelo.addAttribute("id", id);
+        modelo.addAttribute("nombre", autorServicio.getOne(id).getNombre());
         return "autor_registro.html";
     }
 
@@ -67,6 +70,6 @@ public class AutorControlador {
             return "autor_registro.html";
         }
 
-        return "redirect:/lista";
+        return "redirect:/view/autor/lista";
     }
 }

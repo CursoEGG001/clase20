@@ -62,15 +62,22 @@ label{
 input{
     border-style: groove ;
     align-self: start;
-    color: #2f23326f;
+    color: #fff0f9dc;
+    
     box-shadow: .2em .3em .7em #d34d2f43;
     background:
         radial-gradient(
         circle at 7%,
-        rgba(18, 4, 11, 0.45) 5%,
-        rgba(23, 18, 43, 0.21) 8%,
-        rgba(20, 16, 16, 0.12) 73%,
-        rgba(11, 5, 11, 0.07) 82%);
+        rgba(18, 4, 11, 0.88) 5%,
+        rgba(23, 18, 43, 0.80) 8%,
+        rgba(20, 16, 16, 0.75) 73%,
+        rgba(11, 5, 11, 0.7) 82%);
+}
+
+::placeholder {
+    font-stretch: semi-expanded;
+    font-style: oblique;
+    font-weight: bolder;
 }
 
 .container {
@@ -126,3 +133,4 @@ tbody {
         }
     }
 }
+
