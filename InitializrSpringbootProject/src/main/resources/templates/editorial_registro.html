@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this template
+-->
+<html lang="ES-ar" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+    <head>
+        <title>Registro de Editoriales</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" th:href="@{/css/default.css}" />
+    </head>
+    <body>
+        <div >
+            <form class="formulario" th:action="@{/view/editorial/registro}" method="POST">
+                <input th:if="${id != null}" type="hidden" name=id th:value="${id}"/>
+                <div>
+                    <h2 class="card-title" th:text="${id != null ? 'Modifica el Editorial' : 'Registra el Editorial'}">Registra el Editorial</h2>
+                </div>
+                <div >
+                    <label for="campoNombre">Ingrese un Editorial</label>
+                    <input type="text" id="campoNombre" name="nombre" placeholder="NOMBRE" th:value="${nombre}" />
+                </div>
+                <button type="submit">Registrar</button>
+            </form>
+            <div th:if="${error != null}" >
+                <div >
+                    <h5 >Error!</h5>
+                    <p th:text="${error}"></p>
+                </div>
+            </div>
+            <div th:if="${exito != null}" >
+                <div >
+                    <h5 >Exito!</h5>
+                    <p  th:text="${exito}"></p>
+                </div>
+            </div>
+
+            <a th:href="@{/view/editorial/lista}">Volver</a>
+        </div>
+    </body>
+</html>

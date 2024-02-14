@@ -25,15 +25,20 @@ public class EditorialServicio {
     EditorialRepositorio editorialRepositorio;
 
     @Transactional
-    public void crearEditorial(String nombre) throws MiExcepcion{
+    public Editorial crearEditorial(String nombre) throws MiExcepcion{
         
         validar(nombre);
         
         Editorial editorial = new Editorial();
 
         editorial.setNombre(nombre);
+        editorial.setAlta(Boolean.TRUE);
 
-        editorialRepositorio.save(editorial);
+        return editorialRepositorio.save(editorial);
+    }
+    
+    public Editorial getOne(Long id) {
+        return editorialRepositorio.getReferenceById(id);
     }
 
     public List<Editorial> listarEditoriales() {
