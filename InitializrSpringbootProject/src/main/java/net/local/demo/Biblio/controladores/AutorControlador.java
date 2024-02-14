@@ -44,7 +44,7 @@ public class AutorControlador {
     }
 
     @GetMapping("/registra-autor/{id}")
-    public String cambiaRegistro(@PathVariable Long id, ModelMap modelo) {
+    public String cambiaRegistro(@PathVariable(required = false) Long id, ModelMap modelo) {
 
         modelo.addAttribute("id", id);
         modelo.addAttribute("nombre", autorServicio.getOne(id).getNombre());
