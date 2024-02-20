@@ -4,6 +4,11 @@
  */
 package net.local.demo.Biblio.repositorios;
 
+import jakarta.persistence.TemporalType;
+import java.time.Duration;
+import java.time.Instant;
+import java.time.temporal.TemporalAmount;
+import java.util.Date;
 import java.util.List;
 import net.local.demo.Biblio.entidades.Cliente;
 import net.local.demo.Biblio.entidades.Libro;
@@ -23,8 +28,10 @@ public interface PrestamoRepositorio extends JpaRepository<Prestamo, Long> {
     @Query("SELECT p FROM Prestamo p WHERE p.fechadevolucion = CURRENT_DATE")
     List<Prestamo> findAllPrestamosVenciendoHoy();
 
+    Instant sevenDays = new Date().toInstant().plus(Duration.ofDays(7));
+
     // @Query para encontrar todos los préstamos que vencen en los próximos 7 días
-    @Query("SELECT p FROM Prestamo p WHERE p.fechadevolucion BETWEEN CURRENT_DATE AND CURRENT_DATE + 7")
+    @Query("SELECT p FROM Prestamo p WHERE p.fechadevolucion BETWEEN CURRENT_DATE AND :sevenDays")
     List<Prestamo> findAllPrestamosVenciendoProximos7Dias();
 
     // @Query para encontrar todos los préstamos de un cliente específico

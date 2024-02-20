@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this template
+-->
+<html lang="ES-ar" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+    <head>
+        <title>Registro de Editoriales</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" th:href="@{/css/default.css}" />
+    </head>
+    <body>
+        <div >
+            <form class="formulario" th:action="@{/view/libro/registro}" th:object="${libro}" method="POST">
+
+                <div>
+                    <h2 class="card-title" th:text="*{isbn != null ? 'Modifica el Libro' : 'Registra el Libro'}">Registra el Libro</h2>
+                </div>
+                <!-- 
+                <div >
+                    <label for="autor">Ingrese un Autor del Libro</label>
+                    <input type="text" id="autor" placeholder="AUTOR" th:field="*{autor}" />
+                </div>
+                <div >
+                    <label for="editorial">Ingrese un Editor del libro</label>
+                    <input type="text" id="editorial" placeholder="EDITORIAL" th:field="*{editorial}" />
+                </div>
+                -->
+                <div >
+                    <label th:text="*{isbn != null ? 'ISBN' : 'Ingrese un ISBN'}" for="titulo">Ingrese un ISBN</label>
+                    <input type="number" th:disabled="*{isbn != null}" placeholder="ISBN" th:field="*{isbn}"/>
+                    <input type="hidden" th:if="*{isbn != null}" th:field="*{isbn}"/>
+                </div>
+                <div >
+                    <label for="titulo">Ingrese un Titulo</label>
+                    <input type="text" id="titulo" placeholder="TITULO" th:field="*{titulo}" />
+                </div>
+                <div >
+                    <label for="ejemplares">Cantidad de Ejemplares</label>
+                    <input type="number" id="ejemplares" min="0" step="1" th:field="*{ejemplares}" />
+                </div>
+                <div >
+                    <label for="anio">Año del libro</label>
+                    <input type="number" id="anio" step="1" th:field="*{anio}" />
+                </div>
+                <div >
+                    <label for="ejemplaresprestados">Cantidad de Ejemplares Prestados:</label>
+                    <input th:if="*{isbn != null}" type="number" id="ejemplaresprestados" step="1" min="0" th:field="*{ejemplaresprestados}" />
+                    <input th:unless="*{isbn != null}" type="hidden" id="ejemplaresprestados" th:field="*{ejemplaresprestados}" />
+                </div>
+                <div >
+                    <label for="ejemplaresrestantes">Cantidad de Ejemplareso Restantes:</label>
+                    <input th:if="*{isbn != null}" type="number" id="ejemplaresrestantes" step="1" min="0" th:field="*{ejemplaresrestantes}" />
+                    <input th:unless="*{isbn != null}" type="hidden" id="ejemplaresrestantes" th:field="*{ejemplaresrestantes}" />
+                </div>
+
+                <div >
+                    <label for="autorId">Autor:</label>
+                    <select id="autorId" th:field="*{autorId}">
+
+                        <option value="">Seleccionar Autor</option>
+
+                        <option th:if="*{isbn != null}"
+                                th:each="autor : ${listaAutor}"
+                                th:value="${autor.id}"
+                                th:selected="${autor.id} == *{autorId.id}"
+                                th:text="${autor.nombre}"
+                                />
+                        <option th:unless="*{isbn != null}"
+                                th:each="autor : ${listaAutor}"
+                                th:value="${autor.id}"
+                                th:text="${autor.nombre}"
+                                />
+                    </select>
+                </div>
+                <div >
+                    <label for="editorialId">Editorial:</label>
+                    <select id="editorialId" th:field="*{editorialId}">  
+                        <option value="">Seleccionar Editorial</option>
+                        <option th:if="*{isbn != null}"
+                                th:each="editorial : ${listaEditorial}"
+                                th:value="${editorial.id}" 
+                                th:selected="${editorial.id} == *{editorialId.id}" 
+                                th:text="${editorial.nombre}"
+                                />
+                        <option th:unless="*{isbn != null}"
+                                th:each="editorial : ${listaEditorial}"
+                                th:value="${editorial.id}" 
+                                th:text="${editorial.nombre}"
+                                />
+                    </select>
+                </div>
+
+                <button type="submit">Registrar</button>
+            </form>
+            <div th:if="${error != null}" >
+                <div >
+                    <h5 >Error!</h5>
+                    <p th:text="${error}"></p>
+                </div>
+            </div>
+            <div th:if="${exito != null}" >
+                <div >
+                    <h5 >Exito!</h5>
+                    <p  th:text="${exito}"></p>
+                </div>
+            </div>
+
+            <a th:href="@{/view/libro/lista}">Volver</a>
+        </div>
+        <script th:inline="javascript">
+            /* Esto se carga despues que el DOM es cargado. */
+            window.onload = function () {
+                // Obtiene los elementos input de ejemplaresprestados y ejemplaresrestantes
+                const ejemplaresPrestadosInput = document.getElementById("ejemplaresprestados");
+                const ejemplaresRestantesInput = document.getElementById("ejemplaresrestantes");
+                const ejemplaresInput = document.getElementById("ejemplares");
+
+                // Actualiza el input ejemplares cuando ejemplaresprestados o ejemplaresrestantes cambian
+                ejemplaresPrestadosInput.addEventListener("change", function () {
+                    updateEjemplaresValue();
+                });
+                ejemplaresRestantesInput.addEventListener("change", function () {
+                    updateEjemplaresValue();
+                });
+
+                // función para actualizar el valor del input ejemplares.
+                function updateEjemplaresValue() {
+                    const ejemplaresPrestados = parseInt(ejemplaresPrestadosInput.value) || 0;
+                    const ejemplaresRestantes = parseInt(ejemplaresRestantesInput.value) || 0;
+                    ejemplaresInput.value = ejemplaresPrestados + ejemplaresRestantes;
+                }
+
+                // Inicializa el valor de ejemplares al cargar la página.
+                updateEjemplaresValue();
+            };
+        </script>
+    </body>
+</html>

@@ -33,7 +33,7 @@ public class LibroServicio {
     private EditorialRepositorio editorialRepositorio;
 
     @Transactional
-    public void crearLibro(Long isbn, String titulo, Integer ejemplares, Long idAutor, Long idEditorial) throws MiExcepcion {
+    public void crearLibro(Long isbn, Integer anio, String titulo, Integer ejemplares, Long idAutor, Long idEditorial) throws MiExcepcion {
 
         validar(isbn, titulo, ejemplares, idAutor, idEditorial);
 
@@ -56,6 +56,7 @@ public class LibroServicio {
         Libro libro = new Libro();
 
         libro.setIsbn(isbn);
+        libro.setAnio(anio);
         libro.setTitulo(titulo);
         libro.setEjemplares(ejemplares);
         libro.setEjemplaresprestados(0);
@@ -76,7 +77,7 @@ public class LibroServicio {
     }
 
     @Transactional
-    public void modificarLibro(Long isbn, String titulo, Integer ejemplares, Long idAutor, Long idEditorial, Integer anio) throws MiExcepcion {
+    public void modificarLibro(Long isbn, String titulo, Integer ejemplares, Integer ejemplaresprestados, Integer ejemplaresrestantes, Long idAutor, Long idEditorial, Integer anio) throws MiExcepcion {
 
         validar(isbn, titulo, ejemplares, idAutor, idEditorial);
 
@@ -105,6 +106,10 @@ public class LibroServicio {
 
             libro.setEjemplares(ejemplares);
 
+            libro.setEjemplaresprestados(ejemplaresprestados);
+
+            libro.setEjemplaresrestantes(ejemplaresrestantes);
+
             libro.setAutorId(autor);
 
             libro.setAnio(anio);
@@ -116,8 +121,14 @@ public class LibroServicio {
         }
     }
 
+    public Boolean buscarLibro(Long isbn) {
+        return libroRepositorio
+                .existsById(isbn);
+    }
+
     public Libro getOne(Long isbn) {
-        return libroRepositorio.getOne(isbn);
+        return libroRepositorio.
+                getReferenceById(isbn);
     }
 
     private void validar(Long isbn, String titulo, Integer ejemplares, Long idAutor, Long idEditorial) throws MiExcepcion {
