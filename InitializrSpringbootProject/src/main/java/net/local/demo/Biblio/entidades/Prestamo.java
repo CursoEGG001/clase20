@@ -16,6 +16,7 @@ import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import java.io.Serializable;
 import java.util.Date;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  *
@@ -27,14 +28,15 @@ public class Prestamo implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-
+    @GeneratedValue(strategy = GenerationType.AUTO)
     protected Long id;
     @Column(name = "FECHADEVOLUCION")
     @Temporal(TemporalType.TIMESTAMP)
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     protected Date fechadevolucion;
     @Column(name = "FECHAPRESTAMO")
     @Temporal(TemporalType.TIMESTAMP)
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     protected Date fechaprestamo;
     @ManyToOne
     @JoinColumn(name = "CLIENTE_ID", referencedColumnName = "ID")

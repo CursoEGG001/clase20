@@ -65,6 +65,7 @@ public class PrestamoServicio {
 
     }
 
+    @Transactional
     public List<Prestamo> listarPrestamos() throws MiExcepcion {
         List<Prestamo> prestamos = new ArrayList();
         try {
@@ -102,19 +103,25 @@ public class PrestamoServicio {
                 prestamo.setFechadevolucion(fechadevolucion);
                 prestamo.setFechaprestamo(fechaprestamo);
                 prestamo.setLibroIsbn(libro);
-                prestamoRepositorio.save(prestamo);
+                prestamoRepositorio.saveAndFlush(prestamo);
             } catch (Exception e) {
                 throw new MiExcepcion("Error al modificar préstamo: " + e.getMessage());
             }
         }
     }
 
+    @Transactional
     public Prestamo getOne(Long id) throws MiExcepcion {
         try {
             return prestamoRepositorio.getOne(id);
         } catch (Exception e) {
             throw new MiExcepcion("Error al obtener préstamo: " + e.getMessage());
         }
+    }
+
+    @Transactional
+    public Boolean buscarPrestamo(Long id) {
+        return prestamoRepositorio.existsById(id);
     }
 
     private void validar(Date unafecha, Date otrafecha, Long uncliente, Long unLibro) throws MiExcepcion {
@@ -126,10 +133,10 @@ public class PrestamoServicio {
             throw new MiExcepcion("la fecha no puede ser nulo");
         }
         if (uncliente == null) {
-            throw new MiExcepcion("el nombre no puede ser nulo");
+            throw new MiExcepcion("el cliente no puede ser nulo");
         }
         if (unLibro == null) {
-            throw new MiExcepcion("el nombre no puede ser nulo");
+            throw new MiExcepcion("el libro no puede ser nulo");
         }
     }
 }
