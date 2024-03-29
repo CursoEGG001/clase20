@@ -12,15 +12,16 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this
     </head>
     <body>
         <div >
-            <form class="formulario" th:action="@{/view/prestamo/registro}" th:object="${prestamo}" method="POST">
+            <form class="formulario" th:action="@{/view/prestamo/registro/}" th:object="${prestamo}" th:method="POST">
 
                 <div>
                     <h2 class="card-title" th:text="*{id != null ? 'Modifica el Prestamo' : 'Registra el Prestamo'}">Registra el Prestamo</h2>
                 </div>
 
                 <div >
-                    <label th:for="id">ID del Prestamo:</label>
-                    <input  th:field="*{id}" th:disabled="*{id} != null" th:hidden="*{id == null}"/>
+                    <label th:for="*{id+'-prestamo'}" th:hidden="*{id == null}">ID del Prestamo:</label>
+                    <input th:field="*{id}" th:hidden="hidden"/>
+                    <input th:id="*{id+'-prestamo'}" th:value="*{id}" th:disabled="*{id} != null" th:hidden="*{id == null}"/>
                 </div>
                 <div >
                     <label th:for="fechadevolucion">Fecha a devolver:</label>
@@ -46,7 +47,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this
                         <option th:unless="*{id != null}"
                                 th:each="cliente : ${listaClientes}"
                                 th:value="${cliente.id}"
-                                th:text="${cliente.nombre}"
+                                th:text="|${cliente.apellido}, ${cliente.nombre} |"
                                 />
                     </select>
                 </div>

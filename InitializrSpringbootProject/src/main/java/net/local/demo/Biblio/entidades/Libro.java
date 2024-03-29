@@ -4,13 +4,16 @@
  */
 package net.local.demo.Biblio.entidades;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  *
@@ -22,7 +25,7 @@ public class Libro implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @Column(name = "ISBN", unique = true)
+    @Column(name = "ISBN", unique = true,nullable = false)
     private Long isbn;
     @Column(name = "ALTA")
     private Boolean alta;
@@ -42,6 +45,17 @@ public class Libro implements Serializable {
     @JoinColumn(name = "EDITORIAL_ID", referencedColumnName = "ID")
     @OneToOne
     private Editorial editorialId;
+
+    @OneToMany(mappedBy = "libroIsbn", cascade = CascadeType.ALL, orphanRemoval = false)
+    private List<Prestamo> prestamo;
+
+    public List<Prestamo> getPrestamo() {
+        return prestamo;
+    }
+
+    public void setPrestamo(List<Prestamo> prestamo) {
+        this.prestamo = prestamo;
+    }
 
     public Libro() {
     }

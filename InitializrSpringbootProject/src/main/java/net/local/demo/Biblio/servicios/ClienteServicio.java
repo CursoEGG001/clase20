@@ -51,12 +51,14 @@ public class ClienteServicio {
 
     }
 
+    @Transactional(readOnly = true)
     public List<Cliente> ListarClientes() {
         List<Cliente> clientes = new ArrayList<>();
         clientes = clienteRepositorio.findAll();
         return clientes;
     }
 
+    @Transactional(readOnly = true)
     public Cliente getOne(Long id) {
         return clienteRepositorio.getReferenceById(id);
     }

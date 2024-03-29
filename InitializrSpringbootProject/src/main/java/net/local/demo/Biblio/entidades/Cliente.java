@@ -4,14 +4,17 @@
  */
 package net.local.demo.Biblio.entidades;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import java.io.Serializable;
 import java.math.BigInteger;
+import java.util.List;
 
 /**
  *
@@ -35,6 +38,17 @@ public class Cliente implements Serializable {
     protected String nombre;
     @Column(name = "TELEFONO")
     protected String telefono;
+
+    @OneToMany(mappedBy = "clienteId", cascade = CascadeType.ALL, orphanRemoval = false)
+    protected List<Prestamo> prestamos;
+
+    public List<Prestamo> getPrestamos() {
+        return prestamos;
+    }
+
+    public void setPrestamos(List<Prestamo> prestamos) {
+        this.prestamos = prestamos;
+    }
 
     public Cliente() {
     }

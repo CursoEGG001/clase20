@@ -17,6 +17,7 @@ import net.local.demo.Biblio.repositorios.LibroRepositorio;
 import net.local.demo.Biblio.repositorios.PrestamoRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
@@ -33,7 +34,7 @@ public class PrestamoServicio {
     @Autowired
     ClienteRepositorio clienteRepositorio;
 
-    @Transactional
+    @Transactional(propagation = Propagation.NOT_SUPPORTED)
     public void crearPrestamo(Date fechaprestamo, Date fechadevolucion, Long clienteId, Long libroIsbn) throws MiExcepcion {
         validar(fechaprestamo, fechadevolucion, clienteId, libroIsbn);
 
@@ -65,7 +66,6 @@ public class PrestamoServicio {
 
     }
 
-    @Transactional
     public List<Prestamo> listarPrestamos() throws MiExcepcion {
         List<Prestamo> prestamos = new ArrayList();
         try {
@@ -77,40 +77,44 @@ public class PrestamoServicio {
         return prestamos;
     }
 
-    @Transactional
+    @Transactional(propagation = Propagation.NOT_SUPPORTED)
     public void modificarPrestamo(Date fechaprestamo, Date fechadevolucion, Long clienteId, Long libroIsbn, Long id) throws MiExcepcion {
         validar(fechaprestamo, fechadevolucion, clienteId, libroIsbn);
 
+        System.out.println("Entrada a cambiar-- ID:" + id + " Libro: " + libroIsbn + " Cliente: " + clienteId);
+
         Optional<Prestamo> respuesta = prestamoRepositorio.findById(id);
-        Optional<Libro> respuestaLibro = libroRepositorio.findById(clienteId);
-        Optional<Cliente> respuestaCliente = clienteRepositorio.findById(libroIsbn);
+        Optional<Libro> respuestaLibro = libroRepositorio.findById(libroIsbn);
+        Optional<Cliente> respuestaCliente = clienteRepositorio.findById(clienteId);
 
         Libro libro = new Libro();
         Cliente cliente = new Cliente();
 
-        if (respuestaLibro.isPresent()) {
-            libro = respuestaLibro.get();
-        }
-
-        if (respuestaCliente.isPresent()) {
-            cliente = respuestaCliente.get();
-        }
-
         if (respuesta.isPresent()) {
+
             Prestamo prestamo = respuesta.get();
             try {
-                prestamo.setClienteId(cliente);
+                if (respuestaLibro.isPresent()) {
+                    libro = respuestaLibro.get();
+                    prestamo.setLibroIsbn(libro);
+                }
+                if (respuestaCliente.isPresent()) {
+                    cliente = respuestaCliente.get();
+                    prestamo.setClienteId(cliente);
+                }
+
+                System.out.println("Cargando modificación..." + prestamo.getLibroIsbn() + " " + prestamo.getClienteId());
+
                 prestamo.setFechadevolucion(fechadevolucion);
                 prestamo.setFechaprestamo(fechaprestamo);
-                prestamo.setLibroIsbn(libro);
-                prestamoRepositorio.saveAndFlush(prestamo);
+
+                prestamoRepositorio.save(prestamo);
             } catch (Exception e) {
                 throw new MiExcepcion("Error al modificar préstamo: " + e.getMessage());
             }
         }
     }
 
-    @Transactional
     public Prestamo getOne(Long id) throws MiExcepcion {
         try {
             return prestamoRepositorio.getOne(id);
@@ -119,7 +123,6 @@ public class PrestamoServicio {
         }
     }
 
-    @Transactional
     public Boolean buscarPrestamo(Long id) {
         return prestamoRepositorio.existsById(id);
     }

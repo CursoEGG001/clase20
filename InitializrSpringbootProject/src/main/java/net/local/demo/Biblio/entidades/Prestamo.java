@@ -4,8 +4,10 @@
  */
 package net.local.demo.Biblio.entidades;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -16,6 +18,7 @@ import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import java.io.Serializable;
 import java.util.Date;
+
 import org.springframework.format.annotation.DateTimeFormat;
 
 /**
@@ -38,10 +41,12 @@ public class Prestamo implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     protected Date fechaprestamo;
-    @ManyToOne
+
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY,optional = true)
     @JoinColumn(name = "CLIENTE_ID", referencedColumnName = "ID")
     protected Cliente clienteId;
-    @ManyToOne
+
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY,optional = true)
     @JoinColumn(name = "LIBRO_ISBN", referencedColumnName = "ISBN")
     protected Libro libroIsbn;
 

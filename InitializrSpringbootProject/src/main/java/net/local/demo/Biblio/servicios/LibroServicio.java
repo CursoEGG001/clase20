@@ -67,6 +67,7 @@ public class LibroServicio {
         libroRepositorio.save(libro);
     }
 
+    @Transactional(readOnly = true)
     public List<Libro> listarLibros() {
 
         List<Libro> libros = new ArrayList();
@@ -126,6 +127,7 @@ public class LibroServicio {
                 .existsById(isbn);
     }
 
+    @Transactional(readOnly = true)
     public Libro getOne(Long isbn) {
         return libroRepositorio.
                 getReferenceById(isbn);

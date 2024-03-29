@@ -16,6 +16,7 @@ import net.local.demo.Biblio.servicios.PrestamoServicio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.UnexpectedRollbackException;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -67,7 +68,7 @@ public class PrestamoControlador {
         return "prestamo_registro";
     }
 
-    @PostMapping("/registro")
+    @PostMapping("/registro/")
     public String guardaPrestamo(
             @RequestParam(required = false) Long id,
             @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm") Date fechadevolucion,
@@ -76,32 +77,32 @@ public class PrestamoControlador {
             @RequestParam Long libroIsbn,
             Model model
     ) throws MiExcepcion {
-        Prestamo prestamo = new Prestamo();
-
         List<Cliente> listaClientes = clienteServicio.ListarClientes();
         List<Libro> listaLibros = libroServicio.listarLibros();
-        
+        Prestamo prestamo = new Prestamo();
+
+        System.out.println("Este es el ID recibido: " + id);
+
         try {
-            if (id != null && prestamoServicio.buscarPrestamo(id)) {
-                prestamo = prestamoServicio.getOne(id);
-            }
-            
-            if (prestamo.getId() != null) {
+            if (id != null) {
+
+                prestamo.setId(id);
                 prestamoServicio.modificarPrestamo(fechaprestamo, fechadevolucion, clienteId, libroIsbn, id);
-                model.addAttribute("exito", "Se guardó el prestamo " + (prestamo.getId() != null ? id : "como nuevo"));
+                model.addAttribute("exito", "Se guardó el prestamo " + id);
             } else {
                 prestamoServicio.crearPrestamo(fechaprestamo, fechadevolucion, clienteId, libroIsbn);
-                prestamo.setFechadevolucion(fechadevolucion);
-                prestamo.setFechaprestamo(fechaprestamo);
-                prestamo.setLibroIsbn(libroServicio.getOne(libroIsbn));
-                
-                 model.addAttribute("exito", "Se guardó el prestamo nuevo");
+
+                model.addAttribute("exito", "Se guardó el prestamo nuevo");
 
             }
-           
 
-        } catch (MiExcepcion e) {
-            model.addAttribute("error", "Falló el guardado :" + e.getMessage());
+        } catch (UnexpectedRollbackException | MiExcepcion e) {
+            model.addAttribute("error", "Falló el guardado... " + e.getMessage());
+        } finally {
+            prestamo.setFechadevolucion(fechadevolucion);
+            prestamo.setFechaprestamo(fechaprestamo);
+            prestamo.setClienteId(clienteServicio.getOne(clienteId));
+            prestamo.setLibroIsbn(libroServicio.getOne(libroIsbn));
         }
 
         model.addAttribute("listaClientes", listaClientes);
