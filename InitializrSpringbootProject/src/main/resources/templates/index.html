@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html lang="ES-ar" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+    <head>
+        <title>Pagina principal de Acessos</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" th:href="@{/css/default.css}" />
+    </head>
+    <body>
+        <main>
+            <h1>Página de Accesos</h1>
+            <h2>Vistas</h2>
+            <div>
+                <ul>
+                    <li><a th:href="@{/view/autor/lista}">Autores</a></li>
+                    <li><a th:href="@{/view/editorial/lista}">Editoriales</a></li>
+                    <li><a th:href="@{/view/cliente/lista}">Cliente</a></li>
+                    <li><a th:href="@{/view/libro/lista}">Libros</a></li>
+                    <li><a th:href="@{/view/prestamo/lista}">Prestamos</a></li>
+                </ul>
+            </div>
+        </main>
+    </body>
+</html>
+

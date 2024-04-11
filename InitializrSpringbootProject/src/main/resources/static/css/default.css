@@ -7,12 +7,11 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     Author     : pc
 */
 
-html,
-body {
+html, body {
     height: 100%;
-    margin: 0;
+    margin: .2vh .2vw .2vh;
     background: linear-gradient(
-        349deg,
+        352deg,
         #49a09dfd,
         #25b7b7cd,
         #318481ab,
@@ -31,14 +30,21 @@ body {
         #ccafed,
         #ea7ad2,
         #ca8787
-        )
-
-        ;
+        );
     font-family: sans-serif;
     font-weight: 100;
 }
 
+h1 {
+    color: white;
+    font-size: 3em;
+    text-shadow:
+        1px 1px 2px whitesmoke,
+        0 0 1em lightgreen,
+        0 0 0.2em darkgreen;
+}
 h2 {
+    font-size: 2em;
     text-shadow:
         1px 1px 2px white,
         0 0 1em lightblue,
@@ -59,11 +65,23 @@ label{
 
 }
 
+ul {
+    li {
+        &:hover {
+            background-color: rgba(255,255,255,0.3);
+            &:before {
+                background-color: rgba(255,255,255,0.2);
+                z-index: -1;
+            }
+        }
+    }
+}
+
 input{
     border-style: groove ;
     align-self: start;
     color: #fff0f9dc;
-    
+
     box-shadow: .2em .3em .7em #d34d2f43;
     background:
         radial-gradient(
