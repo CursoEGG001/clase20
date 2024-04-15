@@ -66,13 +66,33 @@ label{
 }
 
 ul {
-    li {
+    :link {
+        transition:
+            text-shadow 350ms ease-in-out;
         &:hover {
-            background-color: rgba(255,255,255,0.3);
-            &:before {
-                background-color: rgba(255,255,255,0.2);
-                z-index: -1;
-            }
+            font-size: larger;
+            color: goldenrod;
+            text-shadow:
+                1px 1px 2px gold,
+                0 0 1em lightyellow,
+                0 0 0.2em yellow;
+        }
+    }
+
+    li {
+        list-style: disc;
+        background-color: rgba(255,255,255,0.1);
+        transition:
+            margin-left 400ms ease-in-out,
+            background-color 650ms ease-in-out;
+        margin-left: 0;
+        &:hover {
+
+            position: relative;
+            background-color: rgba(255,255,255,0.35);
+            list-style: circle;
+            margin-left: .2em;
+
         }
     }
 }
