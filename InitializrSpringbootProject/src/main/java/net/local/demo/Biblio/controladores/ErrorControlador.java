@@ -17,6 +17,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class ErrorControlador implements ErrorController {
 
+    
+    /*
+    El controlador está diseñado desde el error hasta la presentación dentro del método.
+    Spring permite definir la página de error en una carpeta en la que busca los errores y se pueden crear las paginas por
+    cada codigo de error con extensión html. Sin embargo, por simplicidad, se integró en el controlador actual toda la
+    información de presentación en este.
+    */
     @RequestMapping("/error")
     @ResponseBody
     public String handleError(HttpServletRequest request) {
@@ -27,8 +34,8 @@ public class ErrorControlador implements ErrorController {
                 + "<meta charset=\"UTF-8\" />\n"
                 + "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n"
                 + "<link rel=\"stylesheet\" href=\"/css/default.css\" />\n"
-                + "</head><body><h2>Página de error</h2><div>Status code: <b>%s</b></div>"
-                + "<div>Mensaje de Excepción: <b>%s</b></div><body></html>",
+                + "</head><body><h1>Página de error</h1><h2>Status code: <b>%s</b></h2>"
+                + "<h3>Mensaje de Excepción: <b>%s</b></h3><body></html>",
                 statusCode, exception == null ? "N/A" : exception.getMessage());
     }
 

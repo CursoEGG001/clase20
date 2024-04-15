@@ -43,12 +43,20 @@ h1 {
         0 0 1em lightgreen,
         0 0 0.2em darkgreen;
 }
+
 h2 {
     font-size: 2em;
     text-shadow:
         1px 1px 2px white,
         0 0 1em lightblue,
         0 0 0.2em cyan;
+}
+
+h3 {
+        text-shadow:
+        .08em .08em .1em whitesmoke,
+        0 0 .12em gray,
+        0 0 .2em grey;
 }
 
 div {
