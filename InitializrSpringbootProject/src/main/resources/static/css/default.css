@@ -149,6 +149,16 @@ input{
     transform: scale(1);
     transition: transform 750ms ease-in-out 125ms ,
         background 750ms ease-in-out 125ms;
+
+    :link {
+        margin: .5em;
+        padding: .1em;
+        text-shadow:
+            .08em .08em 0 whitesmoke,
+            0 0.1em .12em gray,
+            0.1em 0 .2em grey;
+    }
+
     &:hover{
         transform: scale(1.05) translate(1%, 1.21%);
         background: #0f08014a;
@@ -156,7 +166,7 @@ input{
 }
 
 table {
-    width: 800px;
+    width: fit-content;
     border-collapse: separate;
     overflow: hidden;
     box-shadow: 0 0 20px rgba(0,0,0,0.1);
@@ -167,6 +177,10 @@ td {
     padding: 15px;
     background-color: rgba(255,255,255,0.2);
     color: #fff;
+    text-shadow:
+        0.07em 0 .11em #fa0,
+        0 0.07em .17em #a0f,
+        0.07em 0.07em .23em #af0;
 }
 
 th {
@@ -187,8 +201,11 @@ tbody {
     }
     td {
         position: relative;
+        text-shadow:
+            0 0 .15em grey;
         &:hover {
-
+            text-shadow:
+                0 0 .19em gray;
             &:before {
                 content: "";
                 position: absolute;

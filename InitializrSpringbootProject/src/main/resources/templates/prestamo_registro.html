@@ -84,7 +84,9 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this
                 </div>
             </div>
 
-            <a th:href="@{/view/prestamo/lista}">Volver</a>
+            <a th:if="${id != null}" th:href="@{/view/prestamo/lista}">Volver</a>
+            <a th:unless="${id != null}" th:href="@{/}">Volver</a>
+
         </div>
     </body>
 </html>

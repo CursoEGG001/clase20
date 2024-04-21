@@ -37,6 +37,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this
                 <button type="submit">Registrar</button>
 
             </form >
+            <a th:if="${id != null}" th:href="@{/view/cliente/lista}">Volver</a>
+            <a th:unless="${id != null}" th:href="@{/}">Volver</a>
             <div th:if="${error != null}" >
                 <div >
                     <h5 >Error!</h5>

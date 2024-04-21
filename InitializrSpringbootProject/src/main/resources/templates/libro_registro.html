@@ -17,16 +17,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this
                 <div>
                     <h2 class="card-title" th:text="*{isbn != null ? 'Modifica el Libro' : 'Registra el Libro'}">Registra el Libro</h2>
                 </div>
-                <!-- 
-                <div >
-                    <label for="autor">Ingrese un Autor del Libro</label>
-                    <input type="text" id="autor" placeholder="AUTOR" th:field="*{autor}" />
-                </div>
-                <div >
-                    <label for="editorial">Ingrese un Editor del libro</label>
-                    <input type="text" id="editorial" placeholder="EDITORIAL" th:field="*{editorial}" />
-                </div>
-                -->
+
                 <div >
                     <label th:text="*{isbn != null ? 'ISBN' : 'Ingrese un ISBN'}" for="titulo">Ingrese un ISBN</label>
                     <input type="number" th:disabled="*{isbn != null}" placeholder="ISBN" th:field="*{isbn}"/>
@@ -106,8 +97,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this
                     <p  th:text="${exito}"></p>
                 </div>
             </div>
-
-            <a th:href="@{/view/libro/lista}">Volver</a>
+            <a th:if="${id != null}" th:href="@{/view/libro/lista}">Volver</a>
+            <a th:unless="${id != null}" th:href="@{/}">Volver</a>
         </div>
         <script th:inline="javascript">
             /* Esto se carga despues que el DOM es cargado. */

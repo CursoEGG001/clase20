@@ -23,6 +23,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this
                 </div>
                 <button type="submit">Registrar</button>
             </form>
+            <a th:if="${id != null}" th:href="@{/view/editorial/lista}">Volver</a>
+            <a th:unless="${id != null}" th:href="@{/}">Volver</a>
         </div>
     </body>
 </html>
