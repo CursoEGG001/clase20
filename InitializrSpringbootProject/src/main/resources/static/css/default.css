@@ -35,6 +35,10 @@ html, body {
     font-weight: 100;
 }
 
+a{
+    font: normal monospace bold 16px/2 serif;
+}
+
 h1 {
     color: white;
     font-size: 3em;
