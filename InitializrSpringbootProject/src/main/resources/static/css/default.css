@@ -36,7 +36,16 @@ html, body {
 }
 
 a{
+    padding: .2em;
+    border: 0;
+    margin: .1em;
+    background-clip: text;
+    -webkit-background-clip: text;
     font: normal monospace bold 16px/2 serif;
+    background-image: linear-gradient(68deg, #bbbbbbcd, #bbbbbbdc, #bbbbbbeb, #bbbbbbd6, #bbbbbba0);
+    color: #0040d5b0;
+    text-shadow:
+        1px 1px 2px #ffa500c0;
 }
 
 h1 {
@@ -139,9 +148,19 @@ input{
 }
 
 ::placeholder {
+    color: #ffaa0020;
     font-stretch: semi-expanded;
     font-style: oblique;
     font-weight: bolder;
+    background-image: repeating-radial-gradient(
+        circle at 7%,
+        rgba(255, 192, 0, 0.72) 5%,
+        rgba(128, 92, 0, 0.80) 6%,
+        rgba(128, 92, 0, 0.76) 60%,
+        rgba(120, 116, 116, 0.75) 73%,
+        rgba(111, 105, 111, 0.7) 82%);
+    background-clip: text;
+    -webkit-background-clip: text;
 }
 
 .container {
@@ -155,6 +174,8 @@ input{
         background 750ms ease-in-out 125ms;
 
     :link {
+        background-clip: text;
+        -webkit-background-clip: text;
         margin: .5em;
         padding: .1em;
         text-shadow:
@@ -193,14 +214,16 @@ th {
 
 thead {
     th {
-        background-color: #55608f;
+        background-color: #55608f44;
     }
 }
 
 tbody {
     tr {
+        background-color: rgba(192,192,192,0.1);
+        transition: background-color 130ms ease-in 100ms;
         &:hover {
-            background-color: rgba(255,255,255,0.3);
+            background-color: rgba(255,255,255,0.35);
         }
     }
     td {
