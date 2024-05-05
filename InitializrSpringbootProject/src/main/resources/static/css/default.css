@@ -23,7 +23,7 @@ html, body {
         rgba(95,44,130,0.49)
         ),
         repeating-conic-gradient(from 340deg at 25% 25%,
-        rgba(0, 15, 7, 0.1) 0deg 12.5%,
+        rgba(0, 15, 7, 0.1) 0 12.5%,
         rgba(15, 7, 0, 0.12) 13% 25%,
         rgba(7,0,15,0.07) 25% 35%,
         rgba(0,7,15,0.03) 37.5% 50%,
@@ -55,16 +55,16 @@ a{
     font: 1em sans-serif;
     background-image:
         linear-gradient(
-        68deg,
-        #bbbbbbcd,
-        #bbbbbbdc,
-        #bbbbbbf1,
-        #bbbbbbd6,
-        #bbbbbba0
+        7deg,
+        #00005599,
+        #00009901,
+        #0000bb90,
+        #bbbbbb09,
+        #000000a0
         );
-    color: #0040d5b0;
+    color: #0040d530;
     text-shadow:
-        1px 1px 2px #ffa500c0;
+        1px 1px 2px #ffa50020;
 }
 
 h1 {
