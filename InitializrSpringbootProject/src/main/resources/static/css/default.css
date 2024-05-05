@@ -8,31 +8,42 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
 */
 
 html, body {
+    font:small-caps bold 1em/1 sans-serif;
     height: 100%;
     margin: .2vh .2vw .2vh;
-    background: linear-gradient(
-        352deg,
-        #49a09dfd,
-        #25b7b7cd,
-        #318481ab,
-        #3c6d8755,
-        #4b329200,
-        #3c0d7377,
-        #5f2c82fd),
+    background:
         linear-gradient(
-        2deg,
-        #e89292,
-        #e39c62,
-        #edde8a,
-        #a7eb8c,
-        #83e3d4,
-        #8a98df,
-        #ccafed,
-        #ea7ad2,
-        #ca8787
+        352deg,
+        rgba(73,160,223,0.67),
+        rgba(37,183,183,0.48),
+        rgba(49,132,129,0.37),
+        rgba(60,109,135,0.23),
+        rgba(75,50,146,0.01),
+        rgba(60,13,115,0.26),
+        rgba(95,44,130,0.49)
+        ),
+        repeating-conic-gradient(from 340deg at 25% 25%,
+        rgba(0, 15, 7, 0.1) 0deg 12.5%,
+        rgba(15, 7, 0, 0.12) 13% 25%,
+        rgba(7,0,15,0.07) 25% 35%,
+        rgba(0,7,15,0.03) 37.5% 50%,
+        rgba(15,7,0,0.01) 50% 60%,
+        rgba(7,0,15,0.04) 62.5% 70%,
+        rgba(0,15,7,0.09) 75% 100%
+        ),
+
+        repeating-radial-gradient(circle at top center,
+        #e89292 0%,
+        #e39c62 12.5%,
+        #edde8a 25%,
+        #a7eb8c 37.5%,
+        #83e3d4 50%,
+        #8a98df 62.5%,
+        #ccafed 75%,
+        #ea7ad2 87.5%,
+        #ca8787 100%
         );
-    font-family: sans-serif;
-    font-weight: 100;
+    background-attachment: fixed;
 }
 
 a{
@@ -41,8 +52,16 @@ a{
     margin: .1em;
     background-clip: text;
     -webkit-background-clip: text;
-    font: normal monospace bold 16px/2 serif;
-    background-image: linear-gradient(68deg, #bbbbbbcd, #bbbbbbdc, #bbbbbbeb, #bbbbbbd6, #bbbbbba0);
+    font: 1em sans-serif;
+    background-image:
+        linear-gradient(
+        68deg,
+        #bbbbbbcd,
+        #bbbbbbdc,
+        #bbbbbbf1,
+        #bbbbbbd6,
+        #bbbbbba0
+        );
     color: #0040d5b0;
     text-shadow:
         1px 1px 2px #ffa500c0;
@@ -93,24 +112,6 @@ ul {
     transition:
         border 250ms ease-in-out 100ms,
         border-radius 833ms ease-in-out 100ms;
-    :link {
-        border: 0.1em groove #f0f8ff15;
-        border-radius: .19em;
-        transition:
-            text-shadow 350ms ease-in-out 100ms,
-            border 250ms ease-in-out 100ms,
-            border-radius 833ms ease-in-out 100ms;
-        &:hover {
-            border: 0.12em ridge #f0f8ff88;
-            border-radius: .1em;
-            font-size: larger;
-            color: goldenrod;
-            text-shadow:
-                1px 1px 2px gold,
-                0 0 1em lightyellow,
-                0 0 0.2em yellow;
-        }
-    }
 
     &:hover {
         border: 0.12em outset #f8f0ff88;
@@ -120,14 +121,40 @@ ul {
     li {
         list-style: disc;
         background-color:  rgba(248,255,240,0.1);
-        background-image: conic-gradient(from 45deg at top left, transparent 0%, rgba(255,255,255,0.55) 100%);
+        background-image:
+            conic-gradient(
+            from 45deg at top left,
+            transparent 0%,
+            rgba(255,255,255,0.55) 100%
+            );
+        :any-link {
+
+            border: 0.1em groove #f0f8ff15;
+            border-radius: .19em;
+            transition:
+                text-shadow 350ms ease-in-out 100ms,
+                border 250ms ease-in-out 100ms,
+                border-radius 833ms ease-in-out 100ms;
+            &:hover {
+
+                border: 0.12em ridge #f0f8ff88;
+                border-radius: .1em;
+                font-size: larger;
+                color: goldenrod;
+                text-shadow:
+                    1px 1px 2px gold,
+                    0 0 1em lightyellow,
+                    0 0 0.2em yellow;
+            }
+        }
         margin-left: 0;
         transition: margin-left 650ms ease-in-out 125ms,
             background-color 350ms ease-in-out 250ms;
         &:hover {
             list-style: circle;
             margin-left: 0.2em;
-            background-color:  rgba(255,240,248,0.8);
+            background-color:
+                rgba(255,240,248,0.8);
         }
     }
 }
@@ -141,36 +168,41 @@ input{
     background:
         radial-gradient(
         circle at 7%,
-        rgba(18, 4, 11, 0.88) 5%,
-        rgba(23, 18, 43, 0.80) 8%,
-        rgba(20, 16, 16, 0.75) 73%,
-        rgba(11, 5, 11, 0.7) 82%);
+        rgba(18, 4, 11, 0.44) 5%,
+        rgba(23, 18, 43, 0.40) 8%,
+        rgba(20, 16, 16, 0.35) 73%,
+        rgba(11, 5, 11, 0.49) 82%);
 }
 
 ::placeholder {
-    color: #ffaa0020;
+    color: #ffaa0030;
     font-stretch: semi-expanded;
     font-style: oblique;
     font-weight: bolder;
+    text-shadow: .07em .04em .11em rgba(198,198,198,0.11);
     background-image: repeating-radial-gradient(
         circle at 7%,
         rgba(255, 192, 0, 0.72) 5%,
-        rgba(128, 92, 0, 0.80) 6%,
+        rgba(128, 92, 0, 0.86) 6%,
         rgba(128, 92, 0, 0.76) 60%,
-        rgba(120, 116, 116, 0.75) 73%,
-        rgba(111, 105, 111, 0.7) 82%);
+        rgba(120, 116, 116, 0.82) 73%,
+        rgba(111, 105, 111, 0.85) 82%);
     background-clip: text;
     -webkit-background-clip: text;
+
 }
 
 .container {
     position: relative;
     background: #010f0800;
+    border-radius: .5em .2em;
     top: 4%;
     left: 4%;
     transform-origin: top left;
     transform: scale(1);
-    transition: transform 750ms ease-in-out 125ms ,
+    transition:
+        transform 750ms ease-in-out 125ms ,
+        border-radius 550ms ease-in-out 125ms ,
         background 750ms ease-in-out 125ms;
 
     :link {
@@ -186,7 +218,8 @@ input{
 
     &:hover{
         transform: scale(1.05) translate(1%, 1.21%);
-        background: #0f08014a;
+        border-radius: .2em .5em;
+        background: #0f08017c;
     }
 }
 
