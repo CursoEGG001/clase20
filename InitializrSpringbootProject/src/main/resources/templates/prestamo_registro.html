@@ -21,20 +21,20 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this
                 <div >
                     <label th:for="*{id+'-prestamo'}" th:hidden="*{id == null}">ID del Prestamo:</label>
                     <input th:field="*{id}" th:hidden="hidden"/>
-                    <input th:id="*{id+'-prestamo'}" th:value="*{id}" th:disabled="*{id} != null" th:hidden="*{id == null}"/>
+                    <input th:id="*{id+'-prestamo'}" th:value="*{id}" title="Del campo que identifica al prestamo" th:disabled="*{id} != null" th:hidden="*{id == null}"/>
                 </div>
                 <div >
                     <label th:for="fechadevolucion">Fecha a devolver:</label>
-                    <input type="datetime-local" th:field="*{fechadevolucion}" />
+                    <input type="datetime-local" title="Decide cuando se devuelve el libro entrgado" th:field="*{fechadevolucion}" />
                 </div>
                 <div >
                     <label th:for="fechaprestamo">Fecha en que fue pedido:</label>
-                    <input type="datetime-local" th:field="*{fechaprestamo}" />
+                    <input type="datetime-local" title="Pone cuando el libro fue entrgado" th:field="*{fechaprestamo}" />
                 </div>
 
                 <div >
                     <label th:for="clienteId">Cliente:</label>
-                    <select th:field="*{clienteId}">
+                    <select title="Para elección del cliente" th:field="*{clienteId}">
 
                         <option value="">Seleccionar Cliente</option>
 
@@ -53,7 +53,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this
                 </div>
                 <div >
                     <label th:for="libroIsbn">Libro:</label>
-                    <select th:field="*{libroIsbn}">  
+                    <select title="Donde se elije el ejemplar a pedir" th:field="*{libroIsbn}">  
                         <option value="">Seleccionar Libro</option>
                         <option th:if="*{id != null}"
                                 th:each="libro : ${listaLibros}"

@@ -20,35 +20,35 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this
 
                 <div >
                     <label th:text="*{isbn != null ? 'ISBN' : 'Ingrese un ISBN'}" for="titulo">Ingrese un ISBN</label>
-                    <input type="number" th:disabled="*{isbn != null}" placeholder="ISBN" th:field="*{isbn}"/>
+                    <input type="number" th:disabled="*{isbn != null}" title="Este es el campo del ISBN identificador del libro" placeholder="ISBN" th:field="*{isbn}"/>
                     <input type="hidden" th:if="*{isbn != null}" th:field="*{isbn}"/>
                 </div>
                 <div >
                     <label for="titulo">Ingrese un Titulo</label>
-                    <input type="text" id="titulo" placeholder="TITULO" th:field="*{titulo}" />
+                    <input type="text" id="titulo" placeholder="TITULO" title="Se ingresa el título del libro" th:field="*{titulo}" />
                 </div>
                 <div >
                     <label for="ejemplares">Cantidad de Ejemplares</label>
-                    <input type="number" id="ejemplares" min="0" step="1" th:field="*{ejemplares}" />
+                    <input type="number" id="ejemplares" title="Donde se elije la cantidad de ejemplares del libro" min="0" step="1" th:field="*{ejemplares}" />
                 </div>
                 <div >
                     <label for="anio">Año del libro</label>
-                    <input type="number" id="anio" placeholder="AÑO DE PUBLICACIÓN" step="1" th:field="*{anio}" />
+                    <input type="number" id="anio" placeholder="AÑO DE PUBLICACIÓN" title="Donde va el año de publicación de la edición" step="1" th:field="*{anio}" />
                 </div>
                 <div >
                     <label for="ejemplaresprestados">Cantidad de Ejemplares Prestados:</label>
-                    <input th:if="*{isbn != null}" type="number" id="ejemplaresprestados" step="1" min="0" th:field="*{ejemplaresprestados}" />
-                    <input th:unless="*{isbn != null}" type="hidden" id="ejemplaresprestados" th:field="*{ejemplaresprestados}" />
+                    <input th:if="*{isbn != null}" type="number" id="ejemplaresprestados" title="Donde se ingresa los ejemplares prestados" step="1" min="0" th:field="*{ejemplaresprestados}" />
+                    <input th:unless="*{isbn != null}" type="hidden" id="ejemplaresprestados" title="Donde se ingresa los ejemplares prestados" th:field="*{ejemplaresprestados}" />
                 </div>
                 <div >
                     <label for="ejemplaresrestantes">Cantidad de Ejemplareso Restantes:</label>
-                    <input th:if="*{isbn != null}" type="number" id="ejemplaresrestantes" step="1" min="0" th:field="*{ejemplaresrestantes}" />
-                    <input th:unless="*{isbn != null}" type="hidden" id="ejemplaresrestantes" th:field="*{ejemplaresrestantes}" />
+                    <input th:if="*{isbn != null}" type="number" id="ejemplaresrestantes" title="Donde se ingresa los ejemplares que restan" step="1" min="0" th:field="*{ejemplaresrestantes}" />
+                    <input th:unless="*{isbn != null}" type="hidden" id="ejemplaresrestantes" title="Donde se ingresa los ejemplares que restan" th:field="*{ejemplaresrestantes}" />
                 </div>
 
                 <div >
                     <label for="autorId">Autor:</label>
-                    <select id="autorId" th:field="*{autorId}">
+                    <select id="autorId" title="Para seleccionar el autor del libro" th:field="*{autorId}">
 
                         <option value="">Seleccionar Autor</option>
 
@@ -67,7 +67,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this
                 </div>
                 <div >
                     <label for="editorialId">Editorial:</label>
-                    <select id="editorialId" th:field="*{editorialId}">  
+                    <select id="editorialId" title="Para seleccionar el editor del libro" th:field="*{editorialId}">  
                         <option value="">Seleccionar Editorial</option>
                         <option th:if="*{isbn != null}"
                                 th:each="editorial : ${listaEditorial}"
