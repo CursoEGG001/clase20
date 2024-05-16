@@ -71,6 +71,9 @@ public class LibroControlador {
         try {
 
             if (libro != null) {
+                if (ejemplares.compareTo(ejemplaresprestados + ejemplaresrestantes) != 0) {
+                    throw new MiExcepcion("Ejemplares disponibles no concuerdan");
+                }
                 libroServicio.modificarLibro(isbn, titulo, ejemplares, ejemplaresprestados, ejemplaresrestantes, autorId, editorialId, anio);
 
             } else {
@@ -87,7 +90,7 @@ public class LibroControlador {
             model.addAttribute("listaAutor", listaAutor);
             model.addAttribute("listaEditorial", listaEditorial);
             model.addAttribute("error", "Hubo inconvenientes: " + e.getMessage());
-            
+
         } finally {
 
             libro = new Libro();
