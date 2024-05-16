@@ -61,7 +61,16 @@ public class LibroControlador {
     }
 
     @PostMapping("/registro")
-    public String guardaLibro(@RequestParam Long isbn, Integer anio, Integer ejemplares, @RequestParam(required = false) Integer ejemplaresprestados, @RequestParam(required = false) Integer ejemplaresrestantes, String titulo, Long autorId, Long editorialId, Model model) throws MiExcepcion {
+    public String guardaLibro(
+            @RequestParam Long isbn,
+            Integer anio, Integer ejemplares,
+            @RequestParam(required = false) Integer ejemplaresprestados,
+            @RequestParam(required = false) Integer ejemplaresrestantes,
+            String titulo,
+            Long autorId,
+            Long editorialId,
+            Model model
+    ) throws MiExcepcion {
 
         Libro libro = null;
         if (libroServicio.buscarLibro(isbn)) {

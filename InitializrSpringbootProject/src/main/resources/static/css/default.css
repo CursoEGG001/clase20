@@ -9,7 +9,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
 
 html, body {
     --angulo: 101deg;
-    font:small-caps bold 1em/1 sans-serif;
+    font:small-caps bold 1em/0.47 sans-serif;
     height: 100%;
     margin: .2vh .2vw .2vh;
     background:
