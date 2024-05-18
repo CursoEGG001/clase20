@@ -86,7 +86,16 @@ public class PrestamoControlador {
         try {
             if (id != null) {
 
+                if (libroServicio.buscarLibro(libroIsbn)) {
+                    if (libroServicio.getOne(libroIsbn).getEjemplaresrestantes() == 0) {
+                        throw new MiExcepcion("Ejemplar no disponible");
+                    }
+
+                    libroServicio.prestarLibro(libroIsbn);
+                }
+
                 prestamo.setId(id);
+                libroServicio.devolverLibro(prestamoServicio.getOne(id).getLibroIsbn().getIsbn());
                 prestamoServicio.modificarPrestamo(fechaprestamo, fechadevolucion, clienteId, libroIsbn, id);
                 model.addAttribute("exito", "Se guardó el prestamo " + id);
             } else {

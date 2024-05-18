@@ -133,6 +133,40 @@ public class LibroServicio {
                 getReferenceById(isbn);
     }
 
+    @Transactional
+    public Libro prestarLibro(Long isbn) throws MiExcepcion {
+        Optional<Libro> respuesta = libroRepositorio.findById(isbn);
+        Libro libro = respuesta.get();
+        Integer existenPrestados = libro.getEjemplaresprestados();
+        Integer quedanRestantes = libro.getEjemplaresrestantes();
+        if (quedanRestantes > 0) {
+            libro.setEjemplaresprestados(existenPrestados + 1);
+            libro.setEjemplaresrestantes(quedanRestantes - 1);
+        } else {
+            throw new MiExcepcion("No se puede prestar");
+        }
+        libroRepositorio.save(libro);
+        return libroRepositorio.
+                getReferenceById(isbn);
+    }
+
+    @Transactional
+    public Libro devolverLibro(Long isbn) throws MiExcepcion {
+        Optional<Libro> respuesta = libroRepositorio.findById(isbn);
+        Libro libro = respuesta.get();
+        Integer existenPrestados = libro.getEjemplaresprestados();
+        Integer quedanRestantes = libro.getEjemplaresrestantes();
+        if (libro.getEjemplares() > existenPrestados) {
+            libro.setEjemplaresprestados(existenPrestados - 1);
+            libro.setEjemplaresrestantes(quedanRestantes + 1);
+        } else {
+            throw new MiExcepcion("No se puede devolver");
+        }
+        libroRepositorio.save(libro);
+        return libroRepositorio.
+                getReferenceById(isbn);
+    }
+
     private void validar(Long isbn, String titulo, Integer ejemplares, Long idAutor, Long idEditorial) throws MiExcepcion {
 
         if (isbn == null) {
