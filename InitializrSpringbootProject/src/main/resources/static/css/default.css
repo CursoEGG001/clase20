@@ -78,6 +78,8 @@ h1 {
         1px 1px 2px whitesmoke,
         0 0 1em lightgreen,
         0 0 0.2em darkgreen;
+    transform-origin: left top;
+    animation: 750ms ease-out 125ms entradaAnimada;
 }
 
 h2 {
@@ -88,11 +90,43 @@ h2 {
         0 0 0.2em cyan;
 }
 
+@keyframes entradaAnimada {
+  0% {
+    transform: scale(.01);
+    opacity: 0;
+  }
+  16.67% {
+    transform: scale(0.11);
+    opacity: 0.33;
+  }
+  33.33% {
+    transform: scale(0.2);
+    opacity: 0.46;
+  }
+  50% {
+    transform: scale(0.3);
+    opacity: 0.54;
+  }
+  66.67% {
+    transform: scale(0.4);
+    opacity: 0.68;
+  }
+  83.33% {
+    transform: scale(0.6);
+    opacity: 0.88;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
 h3 {
-    text-shadow:
-        .08em .08em .1em whitesmoke,
-        0 0 .12em gray,
-        0 0 .2em grey;
+  text-shadow:
+    .08em .08em .1em whitesmoke,
+    0 0 .12em gray,
+    0 0 .2em grey;
+  animation: entradaAnimada 4s infinite;
 }
 
 div {
