@@ -75,11 +75,11 @@ h1 {
     color: white;
     font-size: 3em;
     text-shadow:
-        1px 1px 2px whitesmoke,
+        .03em .03em .023em whitesmoke,
         0 0 1em lightgreen,
         0 0 0.2em darkgreen;
     transform-origin: left top;
-    animation: 750ms ease-out 125ms entradaAnimada;
+    animation: 453ms ease-out 125ms entradaAnimada;
 }
 
 h2 {
@@ -91,42 +91,42 @@ h2 {
 }
 
 @keyframes entradaAnimada {
-  0% {
-    transform: scale(.01);
-    opacity: 0;
-  }
-  16.67% {
-    transform: scale(0.11);
-    opacity: 0.33;
-  }
-  33.33% {
-    transform: scale(0.2);
-    opacity: 0.46;
-  }
-  50% {
-    transform: scale(0.3);
-    opacity: 0.54;
-  }
-  66.67% {
-    transform: scale(0.4);
-    opacity: 0.68;
-  }
-  83.33% {
-    transform: scale(0.6);
-    opacity: 0.88;
-  }
-  100% {
-    transform: scale(1);
-    opacity: 1;
-  }
+    0% {
+        transform: scale(.01) rotate(-23deg);
+        opacity: 0;
+    }
+    16.67% {
+        transform: scale(0.11) rotate(-21deg);
+        opacity: 0.33;
+    }
+    33.33% {
+        transform: scale(0.2) rotate(-7deg);
+        opacity: 0.46;
+    }
+    50% {
+        transform: scale(0.3) rotate(0);
+        opacity: 0.54;
+    }
+    66.67% {
+        transform: scale(0.4) rotate(4deg);
+        opacity: 0.68;
+    }
+    83.33% {
+        transform: scale(0.6) rotate(1deg);
+        opacity: 0.88;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
 }
 
 h3 {
-  text-shadow:
-    .08em .08em .1em whitesmoke,
-    0 0 .12em gray,
-    0 0 .2em grey;
-  animation: entradaAnimada 4s infinite;
+    text-shadow:
+        .08em .08em .1em whitesmoke,
+        0 0 .12em gray,
+        0 0 .2em grey;
+    animation: entradaAnimada 4s infinite;
 }
 
 div {
@@ -266,7 +266,7 @@ input{
         transition:
             background-position 2800ms ease-in-out 300ms,
             background-image 400ms ease-in-out 200ms;
-        
+
         &:hover{
             --angulo:7deg;
             background-position:25vw 50vh;
