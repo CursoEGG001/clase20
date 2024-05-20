@@ -36,7 +36,7 @@ public class ErrorControlador implements ErrorController {
                 + "<link rel=\"stylesheet\" href=\"/css/default.css\" />\n"
                 + "</head><body><h1>Página de error</h1><h2>Status code: <b>%s</b></h2>"
                 + "<h3>Mensaje de Excepción: <b>%s</b></h3><body></html>",
-                statusCode, exception == null ? "N/A" : exception.getMessage());
+                statusCode, exception != null ? exception.getMessage() : "N/A");
     }
 
     public String getErrorPath() {

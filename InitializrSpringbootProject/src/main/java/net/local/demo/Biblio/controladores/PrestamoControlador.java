@@ -84,6 +84,7 @@ public class PrestamoControlador {
         System.out.println("Este es el ID recibido: " + id);
 
         try {
+
             if (id != null) {
 
                 if (libroServicio.buscarLibro(libroIsbn)) {
@@ -99,6 +100,7 @@ public class PrestamoControlador {
                 prestamoServicio.modificarPrestamo(fechaprestamo, fechadevolucion, clienteId, libroIsbn, id);
                 model.addAttribute("exito", "Se guardó el prestamo " + id);
             } else {
+                libroServicio.prestarLibro(libroIsbn);
                 prestamoServicio.crearPrestamo(fechaprestamo, fechadevolucion, clienteId, libroIsbn);
 
                 model.addAttribute("exito", "Se guardó el prestamo nuevo");

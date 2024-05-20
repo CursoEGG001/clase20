@@ -122,11 +122,12 @@ h2 {
 }
 
 h3 {
+    transform-origin: left top;
     text-shadow:
         .08em .08em .1em whitesmoke,
         0 0 .12em gray,
         0 0 .2em grey;
-    animation: entradaAnimada 4s infinite;
+    animation: entradaAnimada 480ms 1;
 }
 
 div {
