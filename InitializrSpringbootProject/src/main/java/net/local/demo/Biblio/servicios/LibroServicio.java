@@ -4,7 +4,6 @@
  */
 package net.local.demo.Biblio.servicios;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import net.local.demo.Biblio.entidades.Autor;
@@ -70,8 +69,7 @@ public class LibroServicio {
     @Transactional(readOnly = true)
     public List<Libro> listarLibros() {
 
-        List<Libro> libros = new ArrayList();
-
+        List<Libro> libros;
         libros = libroRepositorio.findAll();
 
         return libros;
@@ -172,7 +170,7 @@ public class LibroServicio {
         if (isbn == null) {
             throw new MiExcepcion("el isbn no puede ser nulo"); //
         }
-        if (titulo.isEmpty() || titulo == null) {
+        if (titulo.isEmpty()) {
             throw new MiExcepcion("el titulo no puede ser nulo o estar vacio");
         }
         if (ejemplares == null) {
