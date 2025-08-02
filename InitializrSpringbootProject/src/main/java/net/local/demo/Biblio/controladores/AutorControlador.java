@@ -18,7 +18,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 /**
- *
+ * This controller handles operations related to authors.
+ * It provides endpoints for listing authors, initiating author registration, and managing author details.
+ * It utilizes the `AutorServicio` service layer to interact with the underlying data.
  * @author pc
  */
 @Controller

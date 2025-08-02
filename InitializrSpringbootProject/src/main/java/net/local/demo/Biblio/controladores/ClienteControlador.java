@@ -20,7 +20,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 /**
- *
+ * This class handles client-related operations, including listing, registering, and modifying client data.
+ * It utilizes dependency injection to interact with a `ClienteServicio` service.
+ * The class exposes REST endpoints for managing clients.
  * @author pc
  */
 @Controller
